@@ -18,4 +18,16 @@ mongoose.connect(process.env.MONGO_URL, {
 // 
 const mongo = mongoose.connection;
 
-mongo.on('error'), (error) => console.log(error);
+mongo.on('error'), (error) => console.log(error)
+    .once('open', () => console.log('We did it!'));
+
+/*
+    We use __dirname 
+*/
+
+
+// Server GraphQL
+const server = new GraphQLServer({
+    typeDefs,
+    resolvers
+});
